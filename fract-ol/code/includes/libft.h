@@ -6,7 +6,7 @@
 /*   By: gverdyan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 15:15:22 by gverdyan          #+#    #+#             */
-/*   Updated: 2022/04/16 19:16:21 by gverdyan         ###   ########.fr       */
+/*   Updated: 2022/06/14 21:36:33 by gverdyan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,4 +70,4 @@ t_list	*ft_lstnew(void *content);
 t_list	*ft_lstlast(t_list *lst);
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 
-#endif /* LIBFT_H */
+#endif	/* LIBFT_H */

@@ -12,7 +12,7 @@ MLXOBJS = $(wildcard $(MLX)/*.o)
 
 CFLAGS = -Wall -Wextra -Werror  -I includes -Imlx
 
-SRCS = fractol.c
+SRCS = main.c
 
 OBJS = $(subst .c,.o,$(SRCS))
 
