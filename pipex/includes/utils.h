@@ -6,14 +6,14 @@
 /*   By: gverdyan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/05 16:29:03 by gverdyan          #+#    #+#             */
-/*   Updated: 2022/08/06 20:18:19 by gverdyan         ###   ########.fr       */
+/*   Updated: 2022/08/12 15:31:57 by gverdyan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef UTILS_H
 # define UTILS_H
 
-#include <unistd.h>
+# include <unistd.h>
 
 typedef struct s_descriptors
 {
@@ -30,9 +30,9 @@ typedef struct s_main_args
 
 void	args_valid(int argc, t_fd fds);
 void	set_args(t_args *args, int argc, char **argv, char **envp);
-void    garbage_collector(t_fd *fds, int **pipes, int len);
-void    error_message(char const *sms, int mode);
-void    free_exec(char *operand, char **paths);
+void	garbage_collector(t_fd *fds, int **pipes, int len);
+void	error_message(char const *sms, int mode);
+void	free_exec(char *operand, char **paths);
 
 size_t	ft_strlen(char const *str);
 char	**ft_split(char const *str, char c);

@@ -6,7 +6,7 @@
 /*   By: gverdyan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/05 17:41:50 by gverdyan          #+#    #+#             */
-/*   Updated: 2022/08/06 20:17:20 by gverdyan         ###   ########.fr       */
+/*   Updated: 2022/08/12 15:40:21 by gverdyan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,35 +50,35 @@ char	*ft_strnstr(char const *haystack, char const *needle, size_t len)
 	return (NULL);
 }
 
-void    free_exec(char *operand, char **paths)
+void	free_exec(char *operand, char **paths)
 {
-    int i;
+	int	i;
 
-    i = -1;
-    free(operand);
-    while (paths[++i])
-        free(paths[i]);
-    free(paths);
+	i = -1;
+	free(operand);
+	while (paths[++i])
+		free(paths[i]);
+	free(paths);
 }
 
-void    garbage_collector(t_fd *fds, int **pipes, int len)
+void	garbage_collector(t_fd *fds, int **pipes, int len)
 {
-    int     i;
+	int	i;
 
-    i = -1;
-    while (++i < len)
-        free(pipes[i]);
-    free(pipes);
-    pipes = NULL;
-    if (close(fds->file_in) == -1 || close(fds->file_out) == -1)
-        error_message("\n[File Close ERROR]", 0);
+	i = -1;
+	while (++i < len)
+		free(pipes[i]);
+	free(pipes);
+	pipes = NULL;
+	if (close(fds->file_in) == -1 || close(fds->file_out) == -1)
+		error_message("\n[File Close ERROR]", 0);
 }
 
-void    error_message(char const *sms, int mode)
+void	error_message(char const *sms, int mode)
 {
-    if (mode == 0)
-        perror(sms);
-    else
-        write(1, sms, ft_strlen(sms) + 1);
-    exit(EXIT_FAILURE);
+	if (mode == 0)
+		perror(sms);
+	else
+		write(1, sms, ft_strlen(sms) + 1);
+	exit(EXIT_FAILURE);
 }

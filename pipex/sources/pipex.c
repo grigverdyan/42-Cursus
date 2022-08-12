@@ -6,7 +6,7 @@
 /*   By: gverdyan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/05 17:47:48 by gverdyan          #+#    #+#             */
-/*   Updated: 2022/08/06 20:16:30 by gverdyan         ###   ########.fr       */
+/*   Updated: 2022/08/12 15:38:32 by gverdyan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 #include <unistd.h>
 #include <stdlib.h>
 
-int **open_pipes(int argc)
+int	**open_pipes(int argc)
 {
-    int **pipes;
+	int	**pipes;
 	int	i;
 
 	i = -1;
@@ -27,7 +27,7 @@ int **open_pipes(int argc)
 	i = -1;
 	while (++i < argc - 2)
 		pipe(pipes[i]);
-	return pipes;
+	return (pipes);
 }
 
 void	pipex(int **pipes, t_args args)
@@ -40,13 +40,13 @@ void	pipex(int **pipes, t_args args)
 	{
 		id = fork();
 		if (id == -1)
-		    error_message("\n[Fork ERROR]", 0);
+			error_message("\n[Fork ERROR]", 0);
 		if (id == 0)
 		{
-            if (dup2(pipes[i][0], 0) == -1 || 
-                dup2(pipes[i + 1][1], 1) == -1)
-                error_message("\n[Dup ERROR]", 0);
-            close_pipes(pipes, args.argc - 4);
+			if (dup2(pipes[i][0], 0) == -1 ||
+					dup2(pipes[i + 1][1], 1) == -1)
+				error_message("\n[Dup ERROR]", 0);
+			close_pipes(pipes, args.argc - 4);
 			my_exec(ft_split(args.argv[i + 2], ' '), args.envp);
 		}
 	}
@@ -58,32 +58,32 @@ void	my_exec(char **cmd, char **envp)
 	char	*binary;
 	char	*operand;
 	int		i;
-	
+
 	paths = envp_parsing(envp);
 	i = -1;
 	while (paths[++i])
 	{
-        if (access(cmd[0], X_OK) == -1)
-        {
-		    binary = ft_strjoin(paths[i], "/");
-		    operand = ft_strjoin(binary, cmd[0]);
-		    free(binary);
-		    if (access(operand, X_OK) == -1)
-			    continue ;
-            execve(operand, cmd, envp);
-		    error_message("[Execve ERROR]", 0);
-        }
+		if (access(cmd[0], X_OK) == -1)
+		{
+			binary = ft_strjoin(paths[i], "/");
+			operand = ft_strjoin(binary, cmd[0]);
+			free(binary);
+			if (access(operand, X_OK) == -1)
+				continue ;
+			execve(operand, cmd, envp);
+			error_message("[Execve ERROR]", 0);
+		}
 		execve(cmd[0], cmd, envp);
 		error_message("[Execve ERROR]", 0);
 	}
-    free_exec(operand, paths);
+	free_exec(operand, paths);
 	error_message("[Access ERROR]", 0);
 }
 
-char    **envp_parsing(char **envp)
+char	**envp_parsing(char **envp)
 {
 	char	*envp_path;
-    char    **paths;
+	char	**paths;
 	int		i;
 
 	i = -1;
@@ -93,16 +93,16 @@ char    **envp_parsing(char **envp)
 	envp_path = ft_substr(envp[i], 5, ft_strlen(envp[i]) - 5);
 	paths = ft_split(envp_path, ':');
 	free(envp_path);
-	return paths;
+	return (paths);
 }
 
 void	close_pipes(int **pipes, int i)
 {
-    while (i >= 0)
-    {
-	    if (close(pipes[i][0]) == -1 ||
-	        close(pipes[i][1]) == -1)
-            error_message("\n[Pipe Close ERROR]", 0);
-        i--;
-    }
+	while (i >= 0)
+	{
+		if (close(pipes[i][0]) == -1 ||
+				close(pipes[i][1]) == -1)
+			error_message("\n[Pipe Close ERROR]", 0);
+		i--;
+	}
 }
