@@ -6,7 +6,7 @@
 /*   By: gverdyan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 17:44:34 by gverdyan          #+#    #+#             */
-/*   Updated: 2022/08/17 18:46:53 by gverdyan         ###   ########.fr       */
+/*   Updated: 2022/08/17 18:52:31 by gverdyan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,10 +62,10 @@ void	display_info(void)
 	char	*sms;
 
 	sms = "\tThis INTERSETING game is developed by gverdyan and dpetrosy\
-	\tfor kids.\n\tYou need to collect all jelyfishes to finish the\
-	game.\n\tWhen you did so, the pineapple becomes the House where\
-	you can escape from evil you!\n\tTo start the game identify\
-	the map. Be Careful it is so hard and your life depends on it.\
+ for kids.\n\tYou need to collect all jelyfishes to finish the \
+game.\n\tWhen you did so, the pineapple becomes the House where\
+ you can escape from evil you!\n\tTo start the game identify\
+the map. Be Careful it is so hard and your life depends on it.\
 	\n\tOnly 0.13\% can handle this challenge.\
 	\n\tGood luck, Bikkini Bottom relies on you.\
 	\n\n\tP.S. We love 42 norminette and 42 minilibx leaks";
