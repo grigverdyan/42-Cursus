@@ -2,7 +2,7 @@ NAME		= pipex
 MKDIR		= mkdir -p
 CC			= cc
 INCLUDES 	= -Iincludes
-CFLAGS		= -Wall -Wextra -Werror
+CFLAGS		= -Wall -Wextra -Werror -g
 SRCS_DIR	= sources
 SRCS		= $(wildcard sources/*.c) $(wildcard *.c)
 OBJS		= $(patsubst sources/%.c, objs/%.o,$(SRCS))
@@ -12,7 +12,7 @@ RM			= rm -rf
 .DEFAULT_GOAL = all
 
 $(OBJS_DIR)/%.o: sources/%.c| $(OBJS_DIR)
-	@$(CC) $(CFLAGS) $(INCLUDES) -c -g $< -o $@
+	@$(CC) $(CFLAGS) $(INCLUDES) -c  $< -o $@
 
 $(OBJS_DIR):
 	@$(MKDIR) $(OBJS_DIR)
