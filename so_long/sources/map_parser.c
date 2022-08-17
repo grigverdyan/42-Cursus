@@ -73,13 +73,12 @@ void	get_map(t_map *map, char *map_name)
 	i = -1;
 	while (++i < map->height)
 	{
-		map->map_[i] = (char *)malloc(sizeof(char) * (map->width + 1));
+		map->map_[i] = get_next_line(fd);
 		if (!map->map_[i])
 		{
 			map_free(i - 1, map);
 			error_message("[MALLOC ERROR]: Dynamic memory allocation fault!");
 		}
-		map->map_[i] = get_next_line(fd);
 		map->map_[i][map->width] = '\0';
 	}
 	map->map_[i] = NULL;
