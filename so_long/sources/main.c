@@ -69,5 +69,5 @@ the map. Be Careful it is so hard and your life depends on it.\
 	\n\tOnly 0.13\% can handle this challenge.\
 	\n\tGood luck, Bikkini Bottom relies on you.\
 	\n\n\tP.S. We love 42 norminette and 42 minilibx leaks";
-	ft_printf("%s", sms);
+	ft_printf("%si\n", sms);
 }
