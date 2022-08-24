@@ -33,7 +33,7 @@ WHITE    		= "\033[37m"    # White
 
 all : $(NAME)
 
-$(NAME) : make_directory $(OBJS)
+$(NAME) : $(OBJS)
 	@echo $(GREEN) " - Making libft..." $(RESET)
 	@make -s -C $(LIBFT_DIR)
 	@echo $(BLUE) " - Made libft!" $(RESET)
@@ -44,10 +44,10 @@ $(NAME) : make_directory $(OBJS)
 	@gcc $(CFLAGS) $(OBJS) $(LIBFT) $(FT_PRINTF) -o $(NAME)
 	@echo $(BLUE)"- Compiling FINISHED"$(RESET)
 
-$(OBJS_DIR)/%.o : $(SRCS_DIR)/%.c
+$(OBJS_DIR)/%.o : $(SRCS_DIR)/%.c | $(OBJS_DIR)
 	@$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
-make_directory :
+$(OBJS_DIR) :
 	@$(MKDIR) $(OBJS_DIR)
 
 clean :
@@ -63,7 +63,7 @@ re: fclean all
 
 bonus : $(CHECKER)
 	
-$(CHECKER) : make_directory_bonus $(OBJS_BONUS)
+$(CHECKER) : $(OBJS_BONUS)
 	@echo $(GREEN) " - Making libft..." $(RESET)
 	@make -s -C $(LIBFT_DIR)
 	@echo $(BLUE) " - Made libft!" $(RESET)
@@ -74,10 +74,10 @@ $(CHECKER) : make_directory_bonus $(OBJS_BONUS)
 	@gcc $(CFLAGS) $(OBJS_BONUS) $(LIBFT) $(FT_PRINTF) -o $(CHECKER)
 	@echo $(BLUE)"- Compiling FINISHED"$(RESET)
 
-$(OBJS_DIR_BONUS)/%.o : $(CHECKER_DIR)/$(SRCS_DIR)/%.c
+$(OBJS_DIR_BONUS)/%.o : $(CHECKER_DIR)/$(SRCS_DIR)/%.c | $(OBJS_DIR_BONUS)
 	@$(CC) $(CFLAGS) $(CHECKER_INCLUDE) -c $< -o $@
 
-make_directory_bonus :
+$(OBJS_DIR_BONUS) :
 	@$(MKDIR) $(OBJS_DIR_BONUS)
 
 clean_bonus :
@@ -91,4 +91,4 @@ fclean_bonus : clean_bonus
 
 bonus_re : fclean_bonus bonus
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re bonus clean_bonus fclean_bonus bonus_re
